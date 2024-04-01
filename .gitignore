@@ -1,7 +1,9 @@
+.idea
+.vscode
+.fleet
 node_modules
 dist
 .env
 .yarn
-.idea
-.vscode
 *.log
+/package-lock.json

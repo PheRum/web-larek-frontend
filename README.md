@@ -32,7 +32,7 @@ yarn start
 ## Сборка
 
 ```
-npm run build
+yarn run build
 ```
 
 или
