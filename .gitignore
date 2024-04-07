@@ -7,3 +7,4 @@ dist
 .yarn
 *.log
 /package-lock.json
+/bun.lockb
