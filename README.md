@@ -1,3 +1,5 @@
+https://github.com/PheRum/web-larek-frontend
+
 # Проектная работа "Веб-ларек"
 
 Стек: HTML, SCSS, TS, Webpack
