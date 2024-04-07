@@ -41,7 +41,7 @@ export function ensureElement<T extends HTMLElement>(selectorElement: SelectorEl
     if (selectorElement instanceof HTMLElement) {
         return selectorElement as T;
     }
-    throw new Error('Unknown selector element');
+    throw new Error("Unknown selector element");
 }
 
 export function cloneTemplate<T extends HTMLElement>(query: string | HTMLTemplateElement): T {
@@ -55,17 +55,17 @@ export function bem(block: string, element?: string, modifier?: string): { name:
     if (modifier) name += `_${modifier}`;
     return {
         name,
-        class: `.${name}`
+        class: `.${name}`,
     };
 }
 
 export function getObjectProperties(obj: object, filter?: (name: string, prop: PropertyDescriptor) => boolean): string[] {
     return Object.entries(
-        Object.getOwnPropertyDescriptors(
-            Object.getPrototypeOf(obj)
+            Object.getOwnPropertyDescriptors(
+                Object.getPrototypeOf(obj),
+            ),
         )
-    )
-        .filter(([name, prop]: [string, PropertyDescriptor]) => filter ? filter(name, prop) : (name !== 'constructor'))
+        .filter(([name, prop]: [string, PropertyDescriptor]) => filter ? filter(name, prop) : (name !== "constructor"))
         .map(([name, prop]) => name);
 }
 
@@ -94,12 +94,12 @@ export function getElementData<T extends Record<string, unknown>>(el: HTMLElemen
  */
 export function isPlainObject(obj: unknown): obj is object {
     const prototype = Object.getPrototypeOf(obj);
-    return  prototype === Object.getPrototypeOf({}) ||
+    return prototype === Object.getPrototypeOf({}) ||
         prototype === null;
 }
 
 export function isBoolean(v: unknown): v is boolean {
-    return typeof v === 'boolean';
+    return typeof v === "boolean";
 }
 
 /**
@@ -109,16 +109,16 @@ export function isBoolean(v: unknown): v is boolean {
  */
 export function createElement<
     T extends HTMLElement
-    >(
+>(
     tagName: keyof HTMLElementTagNameMap,
     props?: Partial<Record<keyof T, string | boolean | object>>,
-    children?: HTMLElement | HTMLElement []
+    children?: HTMLElement | HTMLElement [],
 ): T {
     const element = document.createElement(tagName) as T;
     if (props) {
         for (const key in props) {
             const value = props[key];
-            if (isPlainObject(value) && key === 'dataset') {
+            if (isPlainObject(value) && key === "dataset") {
                 setElementData(element, value);
             } else {
                 // @ts-expect-error fix indexing later
